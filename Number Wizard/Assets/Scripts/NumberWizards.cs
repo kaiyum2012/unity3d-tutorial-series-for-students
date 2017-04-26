@@ -12,22 +12,7 @@ public class NumberWizards : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		print ("Welcome to My first Console Game : Number Wizard");
-		print ("Press Up for heigher, Down for Lower and return/enter for equal");
-
-		// init Numbers
-
-		print (" Pick some randome number in your head between " + min + " And " + max);
-
-		// fixing MAX edge guess number 
-		max += 1;
-		_guessedNumber = (int)max / 2;
-		_guessMin = min;
-		_guessMax = max;
-
-		print (" Is your nuber Heigher, Lower or Equal to " + _guessedNumber);
-
-		print ("Press 'R' To Reset");
+		StartGame ();
 	}
 	
 	// Update is called once per frame
@@ -36,35 +21,72 @@ public class NumberWizards : MonoBehaviour
 
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			_guessMin = _guessedNumber;
-			_guessedNumber = (_guessMin + _guessMax) / 2;
+			GuessNextNumber ();
 
-			//print ("min" + _guessMin + "  max " + _guessMax);
-			print (" Is your nuber Heigher, Lower or Equal to " + _guessedNumber);
 
 		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
 			_guessMax = _guessedNumber;
-			_guessedNumber = (_guessMin  + _guessMax) /2;
-
-			//print ("min" + _guessMin + "  max " + _guessMax);
-			print (" Is your nuber Heigher, Lower or Equal to " + _guessedNumber);
+			GuessNextNumber ();
 
 		} else if (Input.GetKeyDown(KeyCode.Return)) {
-			print ("your number is " + _guessedNumber);
+			print ("your Guess This Number --->  " + _guessedNumber + "  ;)");
+			print ("Press 'R' To Reset");
 
 		} else if(Input.GetKeyDown(KeyCode.R)){
 
-			print ("Game is restarting ....");
-			print (" Is your nuber Heigher, Lower or Equal to " + _guessedNumber);
-
-			//print ("min" + min + "  max " + max);
-
-			_guessMin = min;
-			_guessMax = max;
-			_guessedNumber = (_guessMin + _guessMax ) /2;
+			ResetGame ();
+	
 		}
 			
+	}
 
+	void StartGame ()
+	{
+	
+		print ("----------------------------------------------");
+		print ("Welcome to My first Console Game : Number Wizard");
+		print ("Press Up for heigher, Down for Lower and return/enter for equal");
+		print ("Press 'R' To Reset");
 
-		// Enable Next Input
+		print ("----------------------------------------------");
+		// init Numbers
+		print (" Pick some randome number in your head between " + min + " And " + max);
+		// fixing MAX edge guess number 
+		//max += 1;
+
+		/*_guessedNumber = (int)max / 2;
+		_guessMin = min;
+		_guessMax = max;
+*/
+		_guessMin = min;
+		_guessMax = max;
+		_guessedNumber = (_guessMin + _guessMax) / 2;	
+
+		print (" Is your nuber Heigher, Lower or Equal to " + _guessedNumber);
+
+		_guessMax += 1;
+	}
+
+	void ResetGame ()
+	{
+	
+		print ("----------------------------------------------");
+		print ("***********************************************");
+		print ("----------------------------------------------");
+		print ("Game is restarting ....");
+		//print (" Is your nuber Heigher, Lower or Equal to " + _guessedNumber);
+
+		//print ("min" + min + "  max " + max);
+
+		StartGame ();
+
+	
+	}
+
+	void GuessNextNumber ()
+	{
+		_guessedNumber = (_guessMin + _guessMax) / 2;
+		//print ("min" + _guessMin + "  max " + _guessMax);
+		print (" Is your nuber Heigher, Lower or Equal to " + _guessedNumber);
 	}
 }
